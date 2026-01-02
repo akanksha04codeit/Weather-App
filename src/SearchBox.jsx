@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import './SearchBox.css'
 import { useState } from 'react';
 
-export default function SearchBox(){
+export default function SearchBox({updateInfo}){
     let [city, setCity] = useState("");
     let [error, setError] = useState(false);
 
@@ -42,7 +42,8 @@ export default function SearchBox(){
         console.log(city);
         setCity("");
         let newInfo = await getWeatherInfo();
-       
+        updateInfo(newInfo);
+        
         }catch(err){
             setError(true);
         }
